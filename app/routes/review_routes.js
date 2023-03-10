@@ -1,32 +1,56 @@
-const express = require('express');
-const router = express.Router();
-const { Product, Review } = require('../models/review');
+const express = require('express')
 
-// Add review for a product
-router.post('/products/:id/reviews', async (req, res) => {
-  const { id } = req.params;
-  const { user, comment, rating } = req.body;
+const passport = require('passport')
 
-  try {
-    const product = await Product.findById(id);
-    if (!product) {
-      return res.status(404).send('Product not found');
-    }
+const Goal = require('../models/product')
 
-    const review = new Review({
-      user,
-      comment,
-      rating
-    });
+const customErrors = require('../../lib/custom_errors')
+const handle404 = customErrors.handle404
+const requireOwnership = customErrors.requireOwnership
+const removeBlanks = require('../../lib/remove_blank_fields')
+const product = require('../models/product')
+const requireToken = passport.authenticate('bearer', { session: false })
 
-    await review.save();
-    product.reviews.push(review);
-    await product.save();
-    res.status(201).send(review);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Server error');
-  }
-});
 
-module.exports = router;
+const router = express.Router()
+
+// ROUTES
+
+// POST -> Create a review
+
+router.post('/review/:productId', requireToken, removeBlanks, (req, res, next) => {
+    req.body.review.owner = req.user.id
+    const review = req.body.review
+    const productId = req.params.productId
+    product.findById(productlId)
+        .then(handle404)
+        .then(product => {
+            
+            console.log('the product: ', product)
+            console.log('the reviews: ', review)
+            product.review.push(review)
+            return product.save()
+        })
+        .then(product => res.status(201).json({ product: product }))
+        // pass errors along to our error handler
+        .catch(next)
+})
+
+// DELETE -> Delete a review
+
+router.delete('/review/:goalId/:commentId', requireToken, (req, res, next) => {
+    const goalId = req.params.goalId
+    const commentId = req.params.commentId
+    Goal.findById(goalId)
+    .then(handle404)
+    .then(product => {
+        const theReview = product.reviews.id(reviewId)
+        requireOwnership(req, theReview)
+        theReview.remove()
+        return product.save()
+    })
+    .then(() => res.sendStatus(204))
+    .catch(next)
+})
+
+module.exports = router
