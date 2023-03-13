@@ -5,51 +5,87 @@ const db = require('../../config/db')
 
 
 
-const startProducts = [  {    
-    "type": "Smartphone",   
-     "description": "Brand new Samsung Galaxy S22 with 5G connectivity and Exynos 2200 chip",  
-       "price": 799,    "category": "Electronics",  
-      "image": "https://ss7.vzw.com/is/image/VerizonWireless/iphone-14-pro-max-gold-fall22-a?wid=930&hei=930&fmt=webp", 
-         "quantity": 15,  
-},
-{
-  "type": "Laptop",
-  "description": "Brand new Dell XPS 15 with 11th Gen Intel Core i7 and NVIDIA GeForce RTX 3050 Ti",
-  "price": 1499,
-  "category": "Electronics",
-  "image": "https://webobjects2.cdw.com/is/image/CDW/6309901?$product-detail$",
-  "quantity": 5,
- 
-},
-{
-  "type": "Smartwatch",
-  "description": "Brand new Apple Watch Series 7 with Always-On Retina display and new watch faces",
-  "price": 399,
-  "category": "Electronics",
-  "image": "https://example.com/apple-watch7.jpg",
-  "quantity": 20,
-
-},
-{
-  "type": "Sneakers",
-  "description": "Brand new Nike Air Max 270 React with lightweight and breathable design",
-  "price": 149,
-  "category": "Fashion",
-  "image": "https://examplehttps://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/0e7fc8f3-76b7-4631-b147-4dad4b1ff241/air-jordan-1-mid-shoes-X5pM09.png.com/nike-airmax270.jpg",
-  "quantity": 25,
-
-},
-{
-  "type": "Book",
-  "description": "Brand new 'The Alchemist' by Paulo Coelho - a novel about following one's dreams",
-  "price": 14.99,
-  "category": "Books",
-  "image": "https://examplehttps://m.media-amazon.com/images/I/71lG7br7k1L._AC_SX679_.jpg.com/the-alchemist.jpg",
-  "quantity": 30,
-
-
-}
+const startProducts =  [
+  {
+    _id: '1',
+    name: 'Airpods Wireless Bluetooth Headphones',
+    image: '/images/airpods.jpg',
+    description:
+      'Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working',
+    brand: 'Apple',
+    category: 'Electronics',
+    price: 89.99,
+    countInStock: 3,
+    rating: 4.5,
+    numReviews: 4,
+  },
+  {
+    _id: '2',
+    name: 'iPhone 11 Pro 256GB Memory',
+    image: '/images/phone.jpg',
+    description:
+      'Introducing the iPhone 11 Pro. A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life',
+    brand: 'Apple',
+    category: 'Electronics',
+    price: 599.99,
+    countInStock: 10,
+    rating: 4.0,
+    numReviews: 4,
+  },
+  {
+    _id: '3',
+    name: 'Cannon EOS 80D DSLR Camera',
+    image: '/images/camera.jpg',
+    description:
+      'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
+    brand: 'Cannon',
+    category: 'Electronics',
+    price: 929.99,
+    countInStock: 5,
+    rating: 3,
+    numReviews: 3,
+  },
+  {
+    _id: '4',
+    name: 'Sony Playstation 4 Pro White Version',
+    image: '/images/playstation.jpg',
+    description:
+      'The ultimate home entertainment center starts with PlayStation. Whether you are into gaming, HD movies, television, music',
+    brand: 'Sony',
+    category: 'Electronics',
+    price: 399.99,
+    countInStock: 10,
+    rating: 5,
+    numReviews: 3,
+  },
+  {
+    _id: '5',
+    name: 'Logitech G-Series Gaming Mouse',
+    image: '/images/mouse.jpg',
+    description:
+      'Get a better handle on your games with this Logitech LIGHTSYNC gaming mouse. The six programmable buttons allow customization for a smooth playing experience',
+    brand: 'Logitech',
+    category: 'Electronics',
+    price: 49.99,
+    countInStock: 7,
+    rating: 3.5,
+    numReviews: 2,
+  },
+  {
+    _id: '6',
+    name: 'Amazon Echo Dot 3rd Generation',
+    image: '/images/alexa.jpg',
+    description:
+      'Meet Echo Dot - Our most popular smart speaker with a fabric design. It is our most compact smart speaker that fits perfectly into small space',
+    brand: 'Amazon',
+    category: 'Electronics',
+    price: 29.99,
+    countInStock: 0,
+    rating: 4,
+    numReviews: 4,
+  },
 ]
+
 mongoose.connect(db, {
     useNewUrlParser: true
 })
